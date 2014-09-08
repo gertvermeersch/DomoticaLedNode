@@ -4,6 +4,9 @@
 
 Domotica controller;
 char msg[32];
+const int switchport = A0;
+boolean on = false;
+char* result;
 
 void setup() {
   Serial.begin(9600);
@@ -14,7 +17,7 @@ void setup() {
 }
 
 void loop() {
-  char* result;
+  
   Serial.println("waiting for msg");
   while(!controller.checkNewMsg()) {
     delay(100); //have some damn' patience
@@ -27,8 +30,17 @@ void loop() {
   for(int i = 0; i < BUF_LEN; i++) 
     Serial.print(result[i],HEX);
   Serial.print("\n\r"); 
+  command();
     
   
   //controller.sendToNode(1,msg);
+  
+}
+
+void command() {
+  if(strcmp(result, "switch10000000000000000000") == 0) {
+    on = !on;
+    digitalWrite(switchport, on);
+  }
   
 }
