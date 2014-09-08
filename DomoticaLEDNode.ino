@@ -17,7 +17,7 @@ void loop() {
   char* result;
   Serial.println("waiting for msg");
   while(!controller.checkNewMsg()) {
-    //delay(10);
+    delay(100); //have some damn' patience
   }
   Serial.println("msg received");
   result = controller.getMsg();
