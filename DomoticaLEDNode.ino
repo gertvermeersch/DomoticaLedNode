@@ -38,7 +38,7 @@ void loop() {
 }
 
 void command() {
-  if(strcmp(result, "switch10000000000000000000") == 0) {
+  if(result[4] == 's') {
     on = !on;
     digitalWrite(switchport, on);
   }
