@@ -14,6 +14,15 @@ void setup() {
   controller.setDebug(true);
   controller.init(2);  
   msg[0] = 1;
+  delay(200);
+  pinMode(switchport, OUTPUT);
+  pinMode(13,OUTPUT);
+  Serial.println("Starting I/O self-test");
+  delay(100);
+  digitalWrite(switchport, HIGH);
+  delay(500);
+  digitalWrite(switchport, LOW);
+  delay(100);
 }
 
 void loop() {
@@ -38,9 +47,11 @@ void loop() {
 }
 
 void command() {
+  Serial.println(result[4]);
   if(result[4] == 's') {
     on = !on;
     digitalWrite(switchport, on);
+    digitalWrite(13, on);
   }
   
 }
